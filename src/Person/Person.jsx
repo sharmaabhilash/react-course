@@ -3,12 +3,6 @@ import classes from './Person.css';
 
 const person = (props) => {
 
-    const math = Math.random();
-
-    if (math > 0.7) {
-        throw new Error('Something went wrong');
-    }
-
     // return <p>I'm a Person!!! And I'm { Math.floor(Math.random() * 30) } year's old!</p>
     return (
         <div className={ classes.Person }>
