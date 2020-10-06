@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import Auxiliary from '../../../hoc/Auxiliary';
 import classes from './Person.css';
 
@@ -8,31 +8,8 @@ class Person extends Component {
         
         // return <p>I'm a Person!!! And I'm { Math.floor(Math.random() * 30) } year's old!</p>
 
-        // Return all adjecent html tags under single div
-        // return (
-        //     <div className={ classes.Person }>
-        //         <p onClick={ this.props.click }>I'm { this.props.name } and I'm { this.props.age } year's old!</p>
-        //         <p>{ this.props.children }</p>
-        //         <input type="text" 
-        //             onChange={ this.props.changed } 
-        //             value={ this.props.name } />
-        //     </div>
-        // );
-
-        // Return an array of adjecent html tags as array instead of wrapping it in div
-        // return [
-        //     <p key="i1" onClick={ this.props.click }>
-        //         I'm { this.props.name } and I'm { this.props.age } year's old!
-        //     </p>,
-        //     <p key="i2">{ this.props.children }</p>,
-        //     <input key="i2"
-        //         type="text" 
-        //         onChange={ this.props.changed } 
-        //         value={ this.props.name } />
-        // ];
-
         return (
-            <Auxiliary>
+            <Fragment>
                 <p onClick={ this.props.click }>
                     I'm { this.props.name } and I'm { this.props.age } year's old!
                 </p>
@@ -40,7 +17,7 @@ class Person extends Component {
                 <input type="text" 
                     onChange={ this.props.changed } 
                     value={ this.props.name } />
-            </Auxiliary>
+            </Fragment>
         );
     }
 }
