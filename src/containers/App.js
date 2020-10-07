@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import classes from './App.css';
 import Persons from '../components/Persons/Persons';
 import Cockpit from '../components/Cockpit/Cockpit';
-import WithClass from '../hoc/WithClass';
+import withClass from '../hoc/WithClass';
+import Auxiliary from '../hoc/Auxiliary';
 
 class App extends Component {
 
@@ -18,7 +19,8 @@ class App extends Component {
       { id: '7632ee', name: 'Stephnie', age: 26 }
     ],
     otherState: 'some other value',
-    showPersons: false
+    showPersons: false,
+    changeCounter: 0
   };
 
   static getDerivedStateFromProps(props, state) {
@@ -69,8 +71,12 @@ class App extends Component {
     ];
     persons[personIndex] = person;
 
-    this.setState({
-      persons: persons
+    // If you depend on previous state use this approach to update state
+    this.setState((prevState, props) => {
+      return {
+        persons: persons,
+        changeCounter: prevState.changeCounter + 1
+      };
     });
   }
 
@@ -106,17 +112,17 @@ class App extends Component {
     }
 
     return (
-      <WithClass classes={ classes.App }>
+      <Auxiliary>
         <Cockpit
           title={ this.props.appTitle }
           personsLength={ this.state.persons.length }
           showPersons={ this.state.showPersons }
           clicked={ this.togglePersonsHandler } />
         { persons }
-      </WithClass>
+      </Auxiliary>
     );
     // return React.createElement('div', { className: 'App' }, React.createElement('h1', null, 'This is from React.createElement'));
   }
 }
 
-export default App;
+export default withClass(App, classes.App);
