@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import classes from './App.css';
 import Persons from '../components/Persons/Persons';
 import Cockpit from '../components/Cockpit/Cockpit';
+import WithClass from '../hoc/WithClass';
 
 class App extends Component {
 
@@ -105,14 +106,14 @@ class App extends Component {
     }
 
     return (
-      <div className={ classes.App }>
+      <WithClass classes={ classes.App }>
         <Cockpit
           title={ this.props.appTitle }
           personsLength={ this.state.persons.length }
           showPersons={ this.state.showPersons }
           clicked={ this.togglePersonsHandler } />
         { persons }
-      </div>
+      </WithClass>
     );
     // return React.createElement('div', { className: 'App' }, React.createElement('h1', null, 'This is from React.createElement'));
   }
