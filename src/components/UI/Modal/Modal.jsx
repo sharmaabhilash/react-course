@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import classes from './Modal.css';
-import Aux from '../../../hoc/Auxiliary';
+import Aux from '../../../hoc/Auxiliary/Auxiliary';
 import Backdrop from '../Backdrop/Backdrop';
 
 class Modal extends Component {
@@ -9,7 +9,7 @@ class Modal extends Component {
      * This will check if show state is changed or not, if changed then only the 'modal' component is called or updated, else it will not get called. Also component wrapped inside 'modal' component is also not called.
      * */
     shouldComponentUpdate (nextProps, nextState) {
-        return nextProps.show != this.props.show;
+        return nextProps.show !== this.props.show;
     }
 
     componentDidUpdate () {
