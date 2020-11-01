@@ -9,7 +9,7 @@ class Modal extends Component {
      * This will check if show state is changed or not, if changed then only the 'modal' component is called or updated, else it will not get called. Also component wrapped inside 'modal' component is also not called.
      * */
     shouldComponentUpdate (nextProps, nextState) {
-        return nextProps.show !== this.props.show;
+        return nextProps.show !== this.props.show || nextProps.children !== this.props.children;
     }
 
     componentDidUpdate () {
