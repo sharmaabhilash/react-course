@@ -4,16 +4,62 @@ import Button from '../../../components/UI/Button/Button';
 import classes from './ContactData.css';
 import axios from '../../../axios-orders';
 import Spinner from '../../../components/UI/Spinner/Spinner';
+import Input from '../../../components/UI/Input/Input';
 
 class ContactData extends Component {
 
     state = {
-        name: '',
-        email: '',
-        address: {
-            street: '',
-            zipcode: '',
-            country: ''
+        orderForm: {
+                name: {
+                    elementType: 'input',
+                    elementConfig: {
+                        type: 'text',
+                        placeholder: 'Your Name'
+                    },
+                    value: ''
+                },
+                email: {
+                    elementType: 'input',
+                    elementConfig: {
+                        type: 'email',
+                        placeholder: 'Your E-Mail'
+                    },
+                    value: ''
+                },
+                street: {
+                    elementType: 'input',
+                    elementConfig: {
+                        type: 'text',
+                        placeholder: 'Street'
+                    },
+                    value: ''
+                },
+                country: {
+                    elementType: 'input',
+                    elementConfig: {
+                        type: 'text',
+                        placeholder: 'Country'
+                    },
+                    value: ''
+                },
+                zipcode: {
+                    elementType: 'input',
+                    elementConfig: {
+                        type: 'text',
+                        placeholder: 'Zip Code'
+                    },
+                    value: ''
+                },
+                deliveryMethod: {
+                    elementType: 'select',
+                    elementConfig: {
+                        options: [
+                            { value: 'fastest', displayValue: 'Fastest' },
+                            { value: 'cheapest', displayValue: 'Cheapest' }
+                        ]
+                    },
+                    value: ''
+                }
         },
         loading: false
     };
@@ -26,16 +72,7 @@ class ContactData extends Component {
         
         const data = {
             ingredients: this.props.ingredients,
-            price: this.props.price,
-            customer: {
-                name: 'Abhilash',
-                email: 'test@text.com',
-                address: {
-                    street: 'test',
-                    zipcode: '451454',
-                    country: 'Bharat'
-                }
-            }
+            price: this.props.price
         };
 
         axios.post('/order.json', data)
@@ -53,12 +90,24 @@ class ContactData extends Component {
     }
 
     render () {
+        const formElements = [];
+        for (let key in this.state.orderForm) {
+            formElements.push({
+                id: key,
+                config: this.state.orderForm[key]
+            });
+        }
+
         let form = (
             <form>
-                <input className={ classes.Input } type="text" name="name" placeholder="Your Name" />
-                <input className={ classes.Input } type="email" name="email" placeholder="Your Email" />
-                <input className={ classes.Input } type="text" name="street" placeholder="Your Street" />
-                <input className={ classes.Input } type="text" name="postal" placeholder="Your Postal Code" />
+                {
+                    formElements.map(formElement => {
+                        return <Input elementType={ formElement.config.elementType } 
+                            elementConfig={ formElement.config.elementConfig } 
+                            value={ formElement.config.value }
+                            key={ formElement.id } />
+                    })
+                }
                 <Button btnType="Success"
                     clicked={ this.orderHandler }>
                     ORDER
