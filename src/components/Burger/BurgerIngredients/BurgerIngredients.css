@@ -81,10 +81,10 @@
   }
   
 
-.Meat {
+.Tomato {
     width: 80%;
     height: 8%;
-    background: linear-gradient(#7f3608, #702e05);
+    background: linear-gradient(tomato, tomato);
     margin: 2% auto;
     border-radius: 15px;
 }
@@ -105,9 +105,9 @@
     border-radius: 20px;
 }
 
-.Bacon {
+.Onion {
     width: 80%;
     height: 3%;
-    background: linear-gradient(#bf3813, #c45e38);
+    background: linear-gradient(#6F6B57, #6F6B57);
     margin: 2% auto;
 }
