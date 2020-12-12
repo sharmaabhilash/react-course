@@ -33,7 +33,7 @@ const reducer = (state = initialState, action) => {
         case actionTypes.FETCH_ORDERS_FAIL:
             return updateObject(state, { loading: false });
         default:
-                return state;
+            return state;
     };
 };
 
